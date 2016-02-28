@@ -1,10 +1,15 @@
 <!DOCTYPE html>
 <html>
 	<head>
+		<title>Ubersmith API</title>
 		<style>
+			.container{
+				width:100%;
+			}
+
 			.row {
 				margin-top: 15px;
-			    width: 100%;
+			    width: 60%;
 			} 
 
 			.btn-left {
@@ -18,12 +23,36 @@
 			    background-color: red;
 			    color: white;
 			}
+			input{
+			    border-top: none;
+			    border-left: none;
+			    border-right: none;
+			    border-bottom-style: solid;
+			    border-bottom-color: grey;
+			    border-bottom-width: thin;
+		        margin-right: 1%;
+			    margin-left: 1%;
+			    width:40%;
+			}
+			div.example, .uno{
+				display:none;
+			}
+
+			.close{
+				width: 20px;
+				height: 20px;
+				border-radius: 20px;
+				background-color: black;
+				color: white;
+				text-align: center;
+				vertical-align: center;
+			}
 		</style>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
 	</head>
 	<body>
 	<!-- Frontend UI form -->
-	<div>
+	<div class="container">
 		<div class="row">
 			<input type="text" name="api_endpoint" id="api_endpoint" placeholder="API Endpoint" value="/api/values">
 
@@ -34,24 +63,64 @@
 			  <option value="DELETE">DELETE</option>
 			</select>
 		</div>
-		<div class="row">
+		<div class="row uno">
 			<input type="text" name="param1key" id="param1key" placeholder="URL Parmameter Key">
 			<input type="text" name="param1value" id="param1value" placeholder="Value">
+			<button class="close" type="button" onClick="hideRow1()" >x</button>
 		</div>
-		<div class="row">
+		<div class="row example">
 			<input type="text" name="param2key" id="param2key" placeholder="URL Parmameter Key">
 			<input type="text" name="param2value" id="param2value" placeholder="Value">
+			<button class="close" type="button" onClick="hideRow2()" >x</button>
 		</div>
 		<div class="row">
 			<button class="btn-left" type="submit" onClick="loadDoc()">Send</button>
 			<button class="btn-right" type="submit" onClick="reset()">Reset</button>
 		</div>
-		<div>
+		<div class="row">
 			<p>Body</p>
 			<p><span id="api_response"></span></p>
 		</div>
+<!-- 		<div id="checkoutbutton">
+			<p><a href="URL.htm">Checkout</a></p>
+		</div> -->
 	</div>
 		<script>
+
+			  $('#api_endpoint').focus(function() {
+				    $('div.uno').css('display','block');
+			   });
+
+			  $('#param1key').focus(function() {
+				    $('div.example').css('display','block');
+			   });
+
+			  $('#param1value').focus(function() {
+				    $('div.example').css('display','block');
+			  });
+
+			  $('#param2key').focus(function() {
+				    $('div.example').css('display','block');
+			   });
+
+			  $('#param2value').focus(function() {
+				    $('div.example').css('display','block');
+			  });
+
+
+			function hideRow2(){
+				$("#param2key").val("");
+				$("#param2value").val("");
+				$('#param2key').parent().fadeOut('medium');
+			}
+
+
+			function hideRow1(){
+				$("#param1key").val("");
+				$("#param1value").val("");
+				$('#param1key').parent().fadeOut('medium');
+			}
+
 			function loadDoc(){
 				// How do I sanitize inputs using JS, similar to filter_var() in php??
 				var request_method = document.getElementById('request_method').value;
