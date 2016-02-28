@@ -19,7 +19,7 @@
 			    color: white;
 			}
 		</style>
-
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
 	</head>
 	<body>
 	<!-- Frontend UI form -->
@@ -56,6 +56,8 @@
 				// How do I sanitize inputs using JS, similar to filter_var() in php??
 				var request_method = document.getElementById('request_method').value;
 				var api_endpoint   = document.getElementById('api_endpoint').value;
+				// $('div.whatever').text($('input.whatever').val());
+				// text() method supposedly encodes < and > 
 				var param1key 	   = document.getElementById('param1key').value;
 				var param1value    = document.getElementById('param1value').value;
 				var param2key 	   = document.getElementById('param2key').value;

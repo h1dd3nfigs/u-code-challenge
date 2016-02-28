@@ -74,14 +74,15 @@ class Controller
 		parse_str($this->query_string);
 		$model = new Model();
 		$value = $model->get($key);
-		
+		// $value = $model->get(urldecode($key));
+		// echo urldecode($key); return;
 		if(isset($value)){
 			echo json_encode(array('key'=>$key, 'value'=>$value));
 			// "<p>The value for a key '$key' is '$value'</p>";
 			// return json_encode(array('key'=>$key, 'value'=>$value));
 		} else {
 			http_response_code(404);
-			$response = array('status'=>'fail', 'error'=>http_response_code(),'msg'=>"The requested resource ".$_SERVER["REQUEST_URI"]." was not found on this server "  );
+			$response = array('status'=>'fail', 'error'=>http_response_code(),'msg'=>"unknown key '$key'"  );
 			echo json_encode($response);
 			// echo'Couldn\'t find a val for that key';
 
@@ -105,7 +106,13 @@ class Controller
 			}
 			// print_r($response);
 			$output = array('data'=>$response);
+			// print_r($output); //scary how the js alert popped up because i allowed <script> tags as a form input?! :-/
 			echo json_encode($output);
+		} else {
+			http_response_code(500);
+			$response = array('status'=>'fail', 'error'=>http_response_code(),'msg'=>"Unable to retrieve all key-value pairs. please try again later."  );
+			echo json_encode($response);
+
 		}
 			
 	}
@@ -121,6 +128,10 @@ class Controller
 		if($status){
 			echo json_encode(array('status'=>'ok'));
 			echo "<p>Updated an existing key-value pair<br>for key '$key' the value is now '$value'</p><br><br>";
+		} else {
+			http_response_code(500);
+			$response = array('status'=>'fail', 'error'=>http_response_code(),'msg'=>"Unable to update the value for key '$key'. please try again later."  );
+			echo json_encode($response);
 		}
 	}
 
@@ -133,6 +144,10 @@ class Controller
 		if($status){
 			echo json_encode(array('status'=>'ok'));
 			echo "<p>Deleted the value for key '$key' key</p>";
+		} else {
+			http_response_code(500);
+			$response = array('status'=>'fail', 'error'=>http_response_code(),'msg'=>"Unable to delete the value for key '$key'. please try again later."  );
+			echo json_encode($response);
 		}
 	}
 }
