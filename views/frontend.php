@@ -47,6 +47,62 @@
 				text-align: center;
 				vertical-align: center;
 			}
+
+			.tabs-menu {
+			    height: 30px;
+			    float: left;
+			    clear: both;
+			}
+
+			.tabs-menu li {
+			    height: 30px;
+			    line-height: 30px;
+			    float: left;
+			    margin-right: 10px;
+			    background-color: #ccc;
+			    border-top: 1px solid #d4d4d1;
+			    border-right: 1px solid #d4d4d1;
+			    border-left: 1px solid #d4d4d1;
+			}
+
+			.tabs-menu li.current {
+			    position: relative;
+			    background-color: #fff;
+			    border-bottom: 1px solid #fff;
+			    z-index: 5;
+			}
+
+			.tabs-menu li a {
+			    padding: 10px;
+			    text-transform: uppercase;
+			    color: #fff;
+			    text-decoration: none; 
+			}
+
+			.tabs-menu .current a {
+			    color: #2e7da3;
+			}
+
+			.tab {
+			    border: 1px solid #d4d4d1;
+			    background-color: #fff;
+			    float: left;
+			    margin-bottom: 20px;
+			    width: auto;
+			}
+
+			.tab-content {
+			    width: 660px;
+			    padding: 20px;
+			    display: none;
+			}
+
+			#tab-1 {
+			 /*display: block;   */
+			}
+			ul{
+				list-style: none
+			}
 		</style>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
 	</head>
@@ -81,11 +137,42 @@
 			<p>Body</p>
 			<p><span id="api_response"></span></p>
 		</div>
-<!-- 		<div id="checkoutbutton">
-			<p><a href="URL.htm">Checkout</a></p>
-		</div> -->
+	</div>
+
+	<div id="tabs-container">
+		<ul class="tabs-menu">
+	        <li class="current"><a href="#tab-1">Tab 1</a></li>
+	        <li><a href="#tab-2">Tab 2</a></li>
+	        <li><a href="#tab-3">Tab 3</a></li>
+	        <li><a href="#tab-4">Tab 4</a></li>
+	    </ul>
+	    <div class="tab">
+	        <div id="tab-1" class="tab-content">
+	            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam sit amet purus urna. Proin dictum fringilla enim, sit amet suscipit dolor dictum in. Maecenas porttitor, est et malesuada congue, ligula elit fermentum massa, sit amet porta odio est at velit. Sed nec turpis neque. Fusce at mi felis, sed interdum tortor. Nullam pretium, est at congue mattis, nibh eros pharetra lectus, nec posuere libero dui consectetur arcu. Quisque convallis facilisis fermentum. Nam tincidunt, diam nec dictum mattis, nunc dolor ultrices ipsum, in mattis justo turpis nec ligula. Curabitur a ante mauris. Integer placerat imperdiet diam, facilisis pretium elit mollis pretium. Sed lobortis, eros non egestas suscipit, dui dui euismod enim, ac ultricies arcu risus at tellus. Donec imperdiet congue ligula, quis vulputate mauris ultrices non. Aliquam rhoncus, arcu a bibendum congue, augue risus tincidunt massa, vel vehicula diam dolor eget felis.</p>
+	        </div>
+	        <div id="tab-2" class="tab-content">
+            <p>Donec semper dictum sem, quis pretium sem malesuada non. Proin venenatis orci vel nisl porta sollicitudin. Pellentesque sit amet massa et orci malesuada facilisis vel vel lectus. Etiam tristique volutpat auctor. Morbi nec massa eget sem ultricies fermentum id ut ligula. Praesent aliquet adipiscing dictum. Suspendisse dignissim dui tortor. Integer faucibus interdum justo, mattis commodo elit tempor id. Quisque ut orci orci, sit amet mattis nulla. Suspendisse quam diam, feugiat at ullamcorper eget, sagittis sed eros. Proin tortor tellus, pulvinar at imperdiet in, egestas sed nisl. Aenean tempor neque ut felis dignissim ac congue felis viverra. </p>
+        
+        </div>
+        <div id="tab-3" class="tab-content">
+            <p>Duis egestas fermentum ipsum et commodo. Proin bibendum consectetur elit, hendrerit porta mi dictum eu. Vestibulum adipiscing euismod laoreet. Vivamus lobortis tortor a odio consectetur pulvinar. Proin blandit ornare eros dictum fermentum. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Curabitur laoreet, ante aliquet molestie laoreet, lectus odio fringilla purus, id porttitor erat velit vitae mi. Nullam posuere nunc ut justo sollicitudin interdum. Donec suscipit eros nec leo condimentum fermentum. Nunc quis libero massa. Integer tempus laoreet lectus id interdum. Integer facilisis egestas dui at convallis. Praesent elementum nisl et erat iaculis a blandit ligula mollis. Vestibulum vitae risus dui, nec sagittis arcu. Nullam tortor enim, placerat quis eleifend in, viverra ac lacus. Ut aliquam sapien ut metus hendrerit auctor dapibus justo porta. </p>
+        </div>
+        <div id="tab-4" class="tab-content">
+            <p>Proin sollicitudin tincidunt q egestas fermentum ipsum et commodo. Proin bibendum consectetur elit, hendrerit porta mi dictum eu. Vestibulum adipiscing euismod laoreet. Vivamus lobortis tortor a odio consectetur pulvinar. Proin blandit ornare eros dictum fermentum. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Curabitur laoreet, ante aliquet molestie laoreet, lectus odio fringilla purus, id porttitor erat velit vitae mi. Nullam posuere nunc ut justo sollicitudin interdum. Donec suscipit eros nec leo condimentum fermentum. Nunc quis libero massa. Integer tempus laoreet lectus id interdum. Integer facilisis egestas dui at convallis. Praesent elementum nisl et erat iaculis a blandit ligula mollis. Vestibulum vitae risus dui, nec sagittis arcu. Nullam tortor enim, placerat quis eleifend in, viverra ac lacus. Ut aliquam sapien ut metus hendrerit auctor dapibus justo porta</p>
+		</div>
 	</div>
 		<script>
+$(document).ready(function() {
+    $(".tabs-menu a").click(function(event) {
+        event.preventDefault();
+        $(this).parent().addClass("current");
+        $(this).parent().siblings().removeClass("current");
+        var tab = $(this).attr("href");
+        $(".tab-content").not(tab).css("display", "none");
+        $(tab).fadeIn().css("display", "inline");
+    });
+});
+
 
 			  $('#api_endpoint').focus(function() {
 				    $('div.uno').css('display','block');

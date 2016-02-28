@@ -94,7 +94,7 @@ class Controller
 		$model = new Model();
 		$arr = $model->getAll();
 		
-		if($arr){
+		if(isset($arr)){
 			// $keys = array_keys($arr);
 			// $values = array_values($arr);
 			$response = array();
@@ -127,7 +127,7 @@ class Controller
 
 		if($status){
 			echo json_encode(array('status'=>'ok'));
-			echo "<p>Updated an existing key-value pair<br>for key '$key' the value is now '$value'</p><br><br>";
+			// echo "<p>Updated an existing key-value pair<br>for key '$key' the value is now '$value'</p><br><br>";
 		} else {
 			http_response_code(500);
 			$response = array('status'=>'fail', 'error'=>http_response_code(),'msg'=>"Unable to update the value for key '$key'. please try again later."  );

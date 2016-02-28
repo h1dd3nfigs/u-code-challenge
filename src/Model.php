@@ -35,7 +35,7 @@ class Model
 	public function delete($key)
 	{
 		unset($_SESSION[$key]);
-		
+		// session_unset();return true; // quick way to delete all test/junk session data
 		if($this->get($key)=== null)
 			return true;
 	} 		
