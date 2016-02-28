@@ -104,74 +104,77 @@
 				list-style: none
 			}
 		</style>
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
 	</head>
 	<body>
-	<!-- Frontend UI form -->
-	<div class="container">
-		<div class="row">
-			<input type="text" name="api_endpoint" id="api_endpoint" placeholder="API Endpoint" value="/api/values">
+		<!-- Frontend UI form -->
+		<div class="container">
+			<div class="row">
+				<input type="text" name="api_endpoint" id="api_endpoint" placeholder="API Endpoint" value="/api/values">
 
-			<select name="request_method" id="request_method">
-			  <option value="POST">POST</option>
-			  <option value="GET">GET</option>
-			  <option value="PUT">PUT</option>
-			  <option value="DELETE">DELETE</option>
-			</select>
+				<select name="request_method" id="request_method">
+				  <option value="POST">POST</option>
+				  <option value="GET">GET</option>
+				  <option value="PUT">PUT</option>
+				  <option value="DELETE">DELETE</option>
+				</select>
+			</div>
+			<div class="row uno">
+				<input type="text" name="param1key" id="param1key" placeholder="URL Parmameter Key">
+				<input type="text" name="param1value" id="param1value" placeholder="Value">
+				<button class="close" type="button" onClick="hideRow1()" >x</button>
+			</div>
+			<div class="row example">
+				<input type="text" name="param2key" id="param2key" placeholder="URL Parmameter Key">
+				<input type="text" name="param2value" id="param2value" placeholder="Value">
+				<button class="close" type="button" onClick="hideRow2()" >x</button>
+			</div>
+			<div class="row">
+				<button class="btn-left" type="submit" onClick="loadDoc()">Send</button>
+				<button class="btn-right" type="submit" onClick="reset()">Reset</button>
+			</div>
+			<div class="row">
+				<p>Body</p>
+				<p><span id="api_response"></span></p>
+			</div>
+		
+			<?php /*
+			<div id="tabs-container">
+				<ul class="tabs-menu">
+			        <li class="current"><a href="#tab-1">Tab 1</a></li>
+			        <li><a href="#tab-2">Tab 2</a></li>
+			        <li><a href="#tab-3">Tab 3</a></li>
+			        <li><a href="#tab-4">Tab 4</a></li>
+			    </ul>
+			    <div class="tab">
+			        <div id="tab-1" class="tab-content">
+			            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam sit amet purus urna. Proin dictum fringilla enim, sit amet suscipit dolor dictum in. Maecenas porttitor, est et malesuada congue, ligula elit fermentum massa, sit amet porta odio est at velit. Sed nec turpis neque. Fusce at mi felis, sed interdum tortor. Nullam pretium, est at congue mattis, nibh eros pharetra lectus, nec posuere libero dui consectetur arcu. Quisque convallis facilisis fermentum. Nam tincidunt, diam nec dictum mattis, nunc dolor ultrices ipsum, in mattis justo turpis nec ligula. Curabitur a ante mauris. Integer placerat imperdiet diam, facilisis pretium elit mollis pretium. Sed lobortis, eros non egestas suscipit, dui dui euismod enim, ac ultricies arcu risus at tellus. Donec imperdiet congue ligula, quis vulputate mauris ultrices non. Aliquam rhoncus, arcu a bibendum congue, augue risus tincidunt massa, vel vehicula diam dolor eget felis.</p>
+			        </div>
+			        <div id="tab-2" class="tab-content">
+		            <p>Donec semper dictum sem, quis pretium sem malesuada non. Proin venenatis orci vel nisl porta sollicitudin. Pellentesque sit amet massa et orci malesuada facilisis vel vel lectus. Etiam tristique volutpat auctor. Morbi nec massa eget sem ultricies fermentum id ut ligula. Praesent aliquet adipiscing dictum. Suspendisse dignissim dui tortor. Integer faucibus interdum justo, mattis commodo elit tempor id. Quisque ut orci orci, sit amet mattis nulla. Suspendisse quam diam, feugiat at ullamcorper eget, sagittis sed eros. Proin tortor tellus, pulvinar at imperdiet in, egestas sed nisl. Aenean tempor neque ut felis dignissim ac congue felis viverra. </p>
+		        
+		        </div>
+		        <div id="tab-3" class="tab-content">
+		            <p>Duis egestas fermentum ipsum et commodo. Proin bibendum consectetur elit, hendrerit porta mi dictum eu. Vestibulum adipiscing euismod laoreet. Vivamus lobortis tortor a odio consectetur pulvinar. Proin blandit ornare eros dictum fermentum. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Curabitur laoreet, ante aliquet molestie laoreet, lectus odio fringilla purus, id porttitor erat velit vitae mi. Nullam posuere nunc ut justo sollicitudin interdum. Donec suscipit eros nec leo condimentum fermentum. Nunc quis libero massa. Integer tempus laoreet lectus id interdum. Integer facilisis egestas dui at convallis. Praesent elementum nisl et erat iaculis a blandit ligula mollis. Vestibulum vitae risus dui, nec sagittis arcu. Nullam tortor enim, placerat quis eleifend in, viverra ac lacus. Ut aliquam sapien ut metus hendrerit auctor dapibus justo porta. </p>
+		        </div>
+		        <div id="tab-4" class="tab-content">
+		            <p>Proin sollicitudin tincidunt q egestas fermentum ipsum et commodo. Proin bibendum consectetur elit, hendrerit porta mi dictum eu. Vestibulum adipiscing euismod laoreet. Vivamus lobortis tortor a odio consectetur pulvinar. Proin blandit ornare eros dictum fermentum. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Curabitur laoreet, ante aliquet molestie laoreet, lectus odio fringilla purus, id porttitor erat velit vitae mi. Nullam posuere nunc ut justo sollicitudin interdum. Donec suscipit eros nec leo condimentum fermentum. Nunc quis libero massa. Integer tempus laoreet lectus id interdum. Integer facilisis egestas dui at convallis. Praesent elementum nisl et erat iaculis a blandit ligula mollis. Vestibulum vitae risus dui, nec sagittis arcu. Nullam tortor enim, placerat quis eleifend in, viverra ac lacus. Ut aliquam sapien ut metus hendrerit auctor dapibus justo porta</p>
+				</div>
+			</div> 
+			*/?>
 		</div>
-		<div class="row uno">
-			<input type="text" name="param1key" id="param1key" placeholder="URL Parmameter Key">
-			<input type="text" name="param1value" id="param1value" placeholder="Value">
-			<button class="close" type="button" onClick="hideRow1()" >x</button>
-		</div>
-		<div class="row example">
-			<input type="text" name="param2key" id="param2key" placeholder="URL Parmameter Key">
-			<input type="text" name="param2value" id="param2value" placeholder="Value">
-			<button class="close" type="button" onClick="hideRow2()" >x</button>
-		</div>
-		<div class="row">
-			<button class="btn-left" type="submit" onClick="loadDoc()">Send</button>
-			<button class="btn-right" type="submit" onClick="reset()">Reset</button>
-		</div>
-		<div class="row">
-			<p>Body</p>
-			<p><span id="api_response"></span></p>
-		</div>
-	</div>
-
-	<div id="tabs-container">
-		<ul class="tabs-menu">
-	        <li class="current"><a href="#tab-1">Tab 1</a></li>
-	        <li><a href="#tab-2">Tab 2</a></li>
-	        <li><a href="#tab-3">Tab 3</a></li>
-	        <li><a href="#tab-4">Tab 4</a></li>
-	    </ul>
-	    <div class="tab">
-	        <div id="tab-1" class="tab-content">
-	            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam sit amet purus urna. Proin dictum fringilla enim, sit amet suscipit dolor dictum in. Maecenas porttitor, est et malesuada congue, ligula elit fermentum massa, sit amet porta odio est at velit. Sed nec turpis neque. Fusce at mi felis, sed interdum tortor. Nullam pretium, est at congue mattis, nibh eros pharetra lectus, nec posuere libero dui consectetur arcu. Quisque convallis facilisis fermentum. Nam tincidunt, diam nec dictum mattis, nunc dolor ultrices ipsum, in mattis justo turpis nec ligula. Curabitur a ante mauris. Integer placerat imperdiet diam, facilisis pretium elit mollis pretium. Sed lobortis, eros non egestas suscipit, dui dui euismod enim, ac ultricies arcu risus at tellus. Donec imperdiet congue ligula, quis vulputate mauris ultrices non. Aliquam rhoncus, arcu a bibendum congue, augue risus tincidunt massa, vel vehicula diam dolor eget felis.</p>
-	        </div>
-	        <div id="tab-2" class="tab-content">
-            <p>Donec semper dictum sem, quis pretium sem malesuada non. Proin venenatis orci vel nisl porta sollicitudin. Pellentesque sit amet massa et orci malesuada facilisis vel vel lectus. Etiam tristique volutpat auctor. Morbi nec massa eget sem ultricies fermentum id ut ligula. Praesent aliquet adipiscing dictum. Suspendisse dignissim dui tortor. Integer faucibus interdum justo, mattis commodo elit tempor id. Quisque ut orci orci, sit amet mattis nulla. Suspendisse quam diam, feugiat at ullamcorper eget, sagittis sed eros. Proin tortor tellus, pulvinar at imperdiet in, egestas sed nisl. Aenean tempor neque ut felis dignissim ac congue felis viverra. </p>
-        
-        </div>
-        <div id="tab-3" class="tab-content">
-            <p>Duis egestas fermentum ipsum et commodo. Proin bibendum consectetur elit, hendrerit porta mi dictum eu. Vestibulum adipiscing euismod laoreet. Vivamus lobortis tortor a odio consectetur pulvinar. Proin blandit ornare eros dictum fermentum. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Curabitur laoreet, ante aliquet molestie laoreet, lectus odio fringilla purus, id porttitor erat velit vitae mi. Nullam posuere nunc ut justo sollicitudin interdum. Donec suscipit eros nec leo condimentum fermentum. Nunc quis libero massa. Integer tempus laoreet lectus id interdum. Integer facilisis egestas dui at convallis. Praesent elementum nisl et erat iaculis a blandit ligula mollis. Vestibulum vitae risus dui, nec sagittis arcu. Nullam tortor enim, placerat quis eleifend in, viverra ac lacus. Ut aliquam sapien ut metus hendrerit auctor dapibus justo porta. </p>
-        </div>
-        <div id="tab-4" class="tab-content">
-            <p>Proin sollicitudin tincidunt q egestas fermentum ipsum et commodo. Proin bibendum consectetur elit, hendrerit porta mi dictum eu. Vestibulum adipiscing euismod laoreet. Vivamus lobortis tortor a odio consectetur pulvinar. Proin blandit ornare eros dictum fermentum. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Curabitur laoreet, ante aliquet molestie laoreet, lectus odio fringilla purus, id porttitor erat velit vitae mi. Nullam posuere nunc ut justo sollicitudin interdum. Donec suscipit eros nec leo condimentum fermentum. Nunc quis libero massa. Integer tempus laoreet lectus id interdum. Integer facilisis egestas dui at convallis. Praesent elementum nisl et erat iaculis a blandit ligula mollis. Vestibulum vitae risus dui, nec sagittis arcu. Nullam tortor enim, placerat quis eleifend in, viverra ac lacus. Ut aliquam sapien ut metus hendrerit auctor dapibus justo porta</p>
-		</div>
-	</div>
 		<script>
-$(document).ready(function() {
-    $(".tabs-menu a").click(function(event) {
-        event.preventDefault();
-        $(this).parent().addClass("current");
-        $(this).parent().siblings().removeClass("current");
-        var tab = $(this).attr("href");
-        $(".tab-content").not(tab).css("display", "none");
-        $(tab).fadeIn().css("display", "inline");
-    });
-});
+
+			// $(document).ready(function() {
+			//     $(".tabs-menu a").click(function(event) {
+			//         event.preventDefault();
+			//         $(this).parent().addClass("current");
+			//         $(this).parent().siblings().removeClass("current");
+			//         var tab = $(this).attr("href");
+			//         $(".tab-content").not(tab).css("display", "none");
+			//         $(tab).fadeIn().css("display", "inline");
+			//     });
+			// });
 
 
 			  $('#api_endpoint').focus(function() {
