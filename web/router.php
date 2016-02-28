@@ -1,30 +1,22 @@
 <?php
 
-
-include __DIR__ . '/../views/frontend.php';
-
-if (isset($_POST['api_endpoint']) && !empty($_POST['api_endpoint'])) {
+// if the request uri is '/', serve the api's frontend ui form
+if (preg_match('/^\/$/', $_SERVER["REQUEST_URI"])) {
 	
-	$api_endpoint = filter_input(INPUT_POST, 'api_endpoint', FILTER_SANITIZE_STRING);
-	$request_method = filter_input(INPUT_POST, 'request_method', FILTER_SANITIZE_STRING);
-	$key1 = filter_input(INPUT_POST, 'key1', FILTER_SANITIZE_STRING);
-	$value1 = filter_input(INPUT_POST, 'value1', FILTER_SANITIZE_STRING);
+    include __DIR__ . '/../views/frontend.php';
 
-	// //Only allow URIs that start with /api/values
-	// if (!preg_match('/^\/api\/values/', $_SERVER["REQUEST_URI"])) {
-	if (!preg_match('/^http:\/\/localhost\/api\/values/', $api_endpoint)) {
-	    
-	    return false;    // serve 404 error
+// if the request uri is '/api/values' with an optional query string, load the api's back end
+} elseif(preg_match('/^\/api\/values(\?([\w-]+(=[\w-]*)?(&[\w-]+(=[\w-]*)?)*)?$|$)/', $_SERVER["REQUEST_URI"])) {
 
-	} else { 
+    include __DIR__ . '/index.php';
 
-	    // include __DIR__ . '/index.php';
-		// echo 'form is submitted';
-	}
+// otherwise, serve a 404 error
+} else { 
+		http_response_code(404);
+		$response = array('status'=>'fail', 'error'=>http_response_code(),'msg'=>"The requested resource ".$_SERVER["REQUEST_URI"]." was not found on this server "  );
+		die(json_encode($response));
+		// return false;    
 
-} else {
-
-	echo 'form not yet submitted';
 }
 
 
